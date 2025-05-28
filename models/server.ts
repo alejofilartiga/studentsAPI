@@ -38,7 +38,7 @@ export class Server {
 
     routes():void{
         this.app.use("/students",studentsRoutes)
-            this.app.use("/docs", express.static(path.join(__dirname,"public")))
+        this.app.use("/docs", express.static(path.join(__dirname,"public")))
         this.app.use("/docs", SwaggerUI.serve, SwaggerUI.setup(swaggerDocument))
     }
 
