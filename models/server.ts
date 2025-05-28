@@ -33,8 +33,8 @@ export class Server {
         this.app.use(express.json())
         this.app.use(cors(corsConfig));
         this.app.options(/(.*)/, cors(corsConfig));
-        this.app.use("/", express.static(path.join(__dirname,"public")))
-        this.app.use("/", SwaggerUI.serve, SwaggerUI.setup(swaggerDocument))
+        this.app.use("/docs", express.static(path.join(__dirname,"public")))
+        this.app.use("/docs", SwaggerUI.serve, SwaggerUI.setup(swaggerDocument))
     }
 
     routes():void{

@@ -1,3 +1,91 @@
 {
-    
+    "openapi": "3.0.0",
+    "info": {
+        "description":"This is a sample students API. You can find\nout more about me at\n[Github](https://github.com/alejofilartiga)",
+        "version": "1.0.0",
+        "title": "Students API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "alejofilartiga@gmail.com"
+        }
+    },
+    "servers":[
+        {
+            "url": "https://studentsapi-alejo.vercel.app"
+        }
+    ],
+    "tags":[
+        {
+            "name":"student",
+            "description":"Student managing API",
+            "externalDocs": {
+                "description":"Visit studentsAPI repository in GitHub",
+                "url":"https://github.com/alejofilartiga/studentsAPI"
+            }
+        }
+    ],
+    "paths":{
+        "/students":{
+            "get":{
+                "tags":["student"],
+                "summary":"Get all students",
+                "description":"Returns all students",
+                "operationId":"getStudents",
+                "responses":{
+                    "200":{
+                        "description":"successful operation",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "$ref":"#/components/schemas/Student"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Invalid request"
+                    }
+                }
+            }
+        }
+    },
+    "components":{
+        "schemas":{
+            "Student":{
+                "type":"object",
+                "required":[
+                    "dni",
+                    "name",
+                    "email",
+                    "camada",
+                    "estado"
+                ],
+                "properties":{
+                    "dni":{
+                        "type":"string",
+                        "example":"46905305"
+                    },
+                    "name":{
+                        "type":"string",
+                        "example":"Alejo Filartiga"
+                    },
+                    "email":{
+                        "type":"string",
+                        "example":"alejofilartiga@gmail.com"
+                    },
+                    "camada":{
+                        "type":"number",
+                        "example":"3817"
+                    },
+                    "estado":{
+                        "type":"boolean",
+                        "example":"true"
+                    }
+                }
+            }
+        }
+    }
 }
