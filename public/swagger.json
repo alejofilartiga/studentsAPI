@@ -49,6 +49,135 @@
                         "description":"Invalid request"
                     }
                 }
+            },
+            "post":{
+                "tags":["student"],
+                "summary":"Create a new student",
+                "description":"Create a new student",
+                "operationId":"createStudent",
+                "requestBody":{
+                    "required":true,
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/Student"
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"Student created successfully",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "$ref":"#/components/schemas/Student"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Invalid input"
+                    }
+                }
+            }
+        },
+        "/students/{dni}":{
+            "get":{
+                "tags":["student"],
+                "summary":"Get a student by DNI",
+                "description":"Returns a single student",
+                "operationId":"getStudentByDni",
+                "parameters":[{
+                    "name":"dni",
+                    "in":"path",
+                    "required":true,
+                    "description":"DNI of the student to fetch",
+                    "type":"number"
+                }],
+                "responses":{
+                    "200":{
+                        "description":"successful operation",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "$ref":"#/components/schemas/Student"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Invalid DNI supplied"
+                    },
+                    "404":{
+                        "description":"Student not found"
+                    }
+                }
+            },
+            "patch":{
+                "tags":["student"],
+                "summary":"Update a student by DNI",
+                "description":"Update a student by DNI",
+                "operationId":"updateStudent",
+                "parameters":[{
+                    "name":"dni",
+                    "in":"path",
+                    "required":true,
+                    "description":"DNI of the student to update",
+                    "type":"number"
+                }],
+                "requestBody":{
+                    "required":true,
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/Student"
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"Student updated successfully",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "$ref":"#/components/schemas/Student"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Invalid input"
+                    },
+                    "404":{
+                        "description":"Student not found"
+                    }
+                }
+            },
+            "delete":{
+                "tags":["student"],
+                "summary":"Delete a student by DNI",
+                "description":"Delete a student by DNI",
+                "operationId":"deleteStudent",
+                "parameters":[{
+                    "name":"dni",
+                    "in":"path",
+                    "required":true,
+                    "description":"DNI of the student to delete",
+                    "type":"number"
+                }],
+                "responses":{
+                    "200":{
+                        "description":"Student deleted successfully"
+                    },
+                    "400":{
+                        "description":"Invalid DNI supplied"
+                    },
+                    "404":{
+                        "description":"Student not found"
+                    }
+                }
             }
         }
     },
@@ -65,7 +194,7 @@
                 ],
                 "properties":{
                     "dni":{
-                        "type":"string",
+                        "type":"number",
                         "example":"46905305"
                     },
                     "name":{
